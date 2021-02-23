@@ -17,7 +17,7 @@ import accolite.turvo.ftp.service.Download;
 @Service
 public class DownloadImpl implements Download {
 
-	static String SERVER = "ftp://ftp.dlptest.com/";
+	static String SERVER = "ftp.dlptest.com";
     static int PORT = 21;
     static String USERNAME = "dlpuser";
     static String PASSWORD = "rNrKYTX9g7z3RgJRmxWuGHbeu";
@@ -31,7 +31,7 @@ public class DownloadImpl implements Download {
             ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
             
             String remoteFile1 = "/1/2021/WholeFileWrite.txt";
-            File downloadFile1 = new File("C:/Users/akash.m/Downloads/wholefilewrite.txt");
+            File downloadFile1 = new File("C:\\Users\\nandhini.r\\Downloads\\wholefilewrite.txt");
             OutputStream outputStream1 = new BufferedOutputStream(new FileOutputStream(downloadFile1));
             boolean success = ftpClient.retrieveFile(remoteFile1, outputStream1);
             outputStream1.close();

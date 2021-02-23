@@ -26,6 +26,6 @@ public class FtpApplication {
 
 	@PostConstruct
 	public void CallingMethod() {
-		upload.UploadFile();
+		download.downloadMain();
 	}
 }
