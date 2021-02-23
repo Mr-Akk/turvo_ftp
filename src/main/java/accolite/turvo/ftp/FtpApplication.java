@@ -1,5 +1,7 @@
 package accolite.turvo.ftp;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 
@@ -21,4 +23,8 @@ public class FtpApplication {
 		SpringApplication.run(FtpApplication.class, args);
 	}
 
+	@PostConstruct
+	public void CallingMethod() {
+		upload.UploadFile();
+	}
 }
