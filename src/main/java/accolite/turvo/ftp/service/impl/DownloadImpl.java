@@ -16,6 +16,19 @@ import accolite.turvo.ftp.service.Download;
 
 @Service
 public class DownloadImpl implements Download {
+	
+	@Value("${Host}")
+	private  String host;
+	
+	@Value("${name}")
+	private  String userName;
+	
+	@Value("${PassWord}")
+	private  String pwd;
+	
+	@Value("${UploadDir}")
+	private  String dir;
+	
 
 	static String SERVER = "ftp.dlptest.com";
     static int PORT = 21;
@@ -23,19 +36,24 @@ public class DownloadImpl implements Download {
     static String PASSWORD = "rNrKYTX9g7z3RgJRmxWuGHbeu";
      
     private Logger logger = LoggerFactory.getLogger(DownloadImpl.class);
-    public void upload(FTPClient ftpClient) {
+    public void download(FTPClient ftpClient) {
     	try {
-    		ftpClient.connect(SERVER, PORT);
-            ftpClient.login(USERNAME, PASSWORD);
+    		
+    		ftpClient.connect(host, PORT);
+            ftpClient.login(userName, pwd);     
             ftpClient.enterLocalPassiveMode();
             ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
             
-            String remoteFile1 = "/1/2021/WholeFileWrite.txt";
-            File downloadFile1 = new File("C:\\Users\\nandhini.r\\Downloads\\wholefilewrite.txt");
-            OutputStream outputStream1 = new BufferedOutputStream(new FileOutputStream(downloadFile1));
+//            String remoteFile1 = "/1/2021/WholeFileWrite.txt";
+          String remoteFile1 = "/1/Sampletext.txt";
+
+//            File downloadFile1 = new File("C:\\Users\\akash.m\\Downloads\\wholefilewrite.txt");
+          File downloadFile1 = new File("C:\\Users\\nandhini.r\\Downloads\\samplesuccessdownload.txt");
+
+          OutputStream outputStream1 = new BufferedOutputStream(new FileOutputStream(downloadFile1));
             boolean success = ftpClient.retrieveFile(remoteFile1, outputStream1);
             outputStream1.close();
- 
+            ftpClient.disconnect();
             if (success) {
         		logger.info("File #1 has been downloaded successfully.");
             }
@@ -49,6 +67,6 @@ public class DownloadImpl implements Download {
     }
 	public void downloadMain() {
 		FTPClient ftpClient = new FTPClient();
-		upload(ftpClient);
+		download(ftpClient);
 	}
 }
