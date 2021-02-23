@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import accolite.turvo.ftp.service.Download;
 import accolite.turvo.ftp.service.Upload;
+import accolite.turvo.ftp.service.impl.DownloadImpl;
 
 @SpringBootApplication
 public class FtpApplication {

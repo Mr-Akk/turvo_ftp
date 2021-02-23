@@ -14,27 +14,10 @@ import org.springframework.stereotype.Service;
 import accolite.turvo.ftp.service.Upload;
 
 @Service
+<<<<<<< HEAD
 public class UploadImpl implements Upload{
+=======
+public class UploadImpl implements Upload {
+>>>>>>> 9129db9fd84026071a90096705addae8ab8cd76d
 
-	@Value("${UploadDir}")
-	private  String direc;
-	public  void UploadFile() {
-		FTPClient ftp=new FTPClient();
-		
-		try {
-			ftp.connect("ftp.dlptest.com");
-			ftp.login("dlpuser","rNrKYTX9g7z3RgJRmxWuGHbeu");
-			ftp.setFileType(FTP.BINARY_FILE_TYPE);
-			ftp.enterLocalPassiveMode();
-			InputStream input=new FileInputStream(new File("C:\\Users\\nandhini.r\\Desktop\\sample.txt"));
-			ftp.storeFile("/1/Sampletext.txt",input);
-			ftp.logout();
-			ftp.disconnect();
-			System.out.println(direc);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
 }
