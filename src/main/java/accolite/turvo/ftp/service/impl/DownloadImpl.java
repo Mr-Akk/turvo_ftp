@@ -29,26 +29,23 @@ public class DownloadImpl implements Download {
 	@Value("${UploadDir}")
 	private  String dir;
 	
-
-	static String SERVER = "ftp.dlptest.com";
+	@Value("${ftpPort}")
+	private int port;
+	
     static int PORT = 21;
-    static String USERNAME = "dlpuser";
-    static String PASSWORD = "rNrKYTX9g7z3RgJRmxWuGHbeu";
      
     private Logger logger = LoggerFactory.getLogger(DownloadImpl.class);
+    
     public void download(FTPClient ftpClient) {
     	try {
-    		
-    		ftpClient.connect(host, PORT);
+    		ftpClient.connect(host, port);
             ftpClient.login(userName, pwd);     
             ftpClient.enterLocalPassiveMode();
             ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
-            
-//            String remoteFile1 = "/1/2021/WholeFileWrite.txt";
-          String remoteFile1 = "/1/Sampletext.txt";
+            String remoteFile1 = "/1/Sampletext.txt";
 
-//            File downloadFile1 = new File("C:\\Users\\akash.m\\Downloads\\wholefilewrite.txt");
-          File downloadFile1 = new File("C:\\Users\\nandhini.r\\Downloads\\samplesuccessdownload.txt");
+//          File downloadFile1 = new File("C:\\Users\\nandhini.r\\Downloads\\samplesuccessdownload.txt");
+          File downloadFile1 = new File("C:\\Users\\akash.m\\Downloads\\samplesuccessdownload.txt");
 
           OutputStream outputStream1 = new BufferedOutputStream(new FileOutputStream(downloadFile1));
             boolean success = ftpClient.retrieveFile(remoteFile1, outputStream1);
